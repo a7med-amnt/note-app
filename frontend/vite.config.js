@@ -7,13 +7,25 @@ export default defineConfig({
     plugins: [react()],
     resolve: {
         alias: {
-            "#rrd": "react-router-dom",
+            //---react
             "#r": "react",
+            "#rrd": "react-router-dom",
+            //---i18next
             "#ri18n": "react-i18next",
+            //---mantien
+            "#mc": "@mantine/core",
+            "#mh": "@mantine/hooks",
+            "#mf": "@mantine/form",
+            "#mn": "@mantine/notifications",
+            //---tabler-icon
+            "#ti": "@tabler/icons-react",
+            //---folders
             "#pages": path.resolve(__dirname, "src", "pages"),
+            "#styles": path.resolve(__dirname, "src", "styles"),
             "#app": path.resolve(__dirname, "src", "app"),
             "#layouts": path.resolve(__dirname, "src", "layouts"),
             "#routes": path.resolve(__dirname, "src", "routes"),
+            "#components": path.resolve(__dirname, "src", "components"),
             "#i18n": path.resolve(__dirname, "src", "i18n")
         }
     }
