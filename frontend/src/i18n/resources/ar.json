@@ -1,6 +1,13 @@
 {
-  "translation":{
-    "note": "ملاحظة",
-    "navbar": "شريط التنقل"
-  }
+    "translation": {
+        "note": "ملاحظة",
+        "navbar": "شريط التنقل",
+        "signin": "سجل",
+        "emailLabel": "البريد الالكتروني",
+        "emailPlaceholder": "أدخل البريد الالكتروني هنا",
+        "passwordLabel": "كلمة السر",
+        "passwordPlaceholder": "أدخل كلمة السر هنا",
+        "dontHavaccount": "لا تمتلك حساب؟",
+        "signup": "انشاء حساب"
+    }
 }

@@ -1,6 +1,13 @@
 {
-  "translation":{
-    "note": "note",
-    "navbar":"Navbar"
-  }
+    "translation": {
+        "note": "note",
+        "navbar": "Navbar",
+        "signin": "Sign In",
+        "emailLabel": "The Email",
+        "emailPlaceholder": "Enter the email here",
+        "passwordLabel": "The Password",
+        "passwordPlaceholder": "Enter the password here",
+        "dontHavaccount": "Do not have an account?",
+        "signup": "Create an account"
+    }
 }

@@ -1,8 +1,8 @@
-import { AppShell, Stack, Divider,Box } from "#mc";
+import { AppShell, Stack, Divider, Box } from "#mc";
 import { useTranslation } from "#ri18n";
 import Navitems from "#components/navitems/Navitems";
 
-export default function () {
+export default function ({ toggle }) {
     const { Navbar } = AppShell;
     let { t } = useTranslation();
 
@@ -13,7 +13,7 @@ export default function () {
             </Box>
             <Divider />
             <Stack p="md">
-                <Navitems />
+                <Navitems toggle={toggle} />
             </Stack>
         </Navbar>
     );
