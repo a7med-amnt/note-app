@@ -7,7 +7,11 @@
         "emailPlaceholder": "Enter the email here",
         "passwordLabel": "The Password",
         "passwordPlaceholder": "Enter the password here",
-        "dontHavaccount": "Do not have an account?",
-        "signup": "Create an account"
+        "dontHavAccount": "Do not have an account?",
+        "havAccount": "have an account?",
+        "signup": "Sign Up",
+        "or": "or",
+        "nameLabel": " The Name",
+        "namePlaceholder": "Enter the name here"
     }
 }

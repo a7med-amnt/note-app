@@ -2,7 +2,9 @@ import { createBrowserRouter, RouterProvider } from "#rrd";
 import Main from "#layouts/main/Main";
 import Auth from "#layouts/auth/Auth";
 import Home from "#pages/home/Home";
+import AuthPage from "#pages/auth/Auth";
 import Signin from "#pages/signin/Signin";
+import Signup from "#pages/signup/Signup";
 
 export default function () {
     const router = createBrowserRouter([
@@ -22,7 +24,15 @@ export default function () {
             children: [
                 {
                     index: true,
+                    element: <AuthPage />
+                },
+                {
+                    path: "signin",
                     element: <Signin />
+                },
+                {
+                    path: "signup",
+                    element: <Signup />
                 }
             ]
         }

@@ -7,7 +7,11 @@
         "emailPlaceholder": "أدخل البريد الالكتروني هنا",
         "passwordLabel": "كلمة السر",
         "passwordPlaceholder": "أدخل كلمة السر هنا",
-        "dontHavaccount": "لا تمتلك حساب؟",
-        "signup": "انشاء حساب"
+        "dontHavAccount": "لا تمتلك حساب؟",
+        "havAccount": "تمتلك حساب؟",
+        "signup": "انشاء حساب",
+        "or": "أو",
+        "nameLabel": "الاسم",
+        "namePlaceholder": "أدخل اسمك هنا"
     }
 }

@@ -26,8 +26,8 @@ export default function () {
                 />
                 <Button fullWidth>{t("signin")}</Button>
                 <Text size="sm">
-                    {t("dontHavaccount")}{" "}
-                    <Anchor component={Link} href="/auth/signup">
+                    {t("dontHavAccount")}{" "}
+                    <Anchor component={Link} to="/auth/signup">
                         {t("signup")}
                     </Anchor>
                 </Text>
