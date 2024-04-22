@@ -11,7 +11,14 @@
         "havAccount": "have an account?",
         "signup": "Sign Up",
         "or": "or",
-        "nameLabel": " The Name",
-        "namePlaceholder": "Enter the name here"
+        "nameLabel": "The Name",
+        "namePlaceholder": "Enter the name here",
+        "search": "Search",
+        "addNote": "Add Note",
+        "editNote": "Edit Note",
+        "title": "Title",
+        "titlePlaceholder": "Enter title here",
+        "content": "Content",
+        "contentPlaceholder": "Enter content here"
     }
 }

@@ -12,6 +12,13 @@
         "signup": "انشاء حساب",
         "or": "أو",
         "nameLabel": "الاسم",
-        "namePlaceholder": "أدخل اسمك هنا"
+        "namePlaceholder": "أدخل اسمك هنا",
+        "search": "البحث",
+        "addNote": "اضافة ملاحظة",
+        "editNote": "تعديل ملاحظة",
+        "title": "العنوان",
+        "titlePlaceholder": "أدخل العنوان هنا",
+        "content": "المحتوى",
+        "contentPlaceholder": "أدخل المحتوى هنا"
     }
 }

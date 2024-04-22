@@ -19,7 +19,7 @@ export default function () {
             padding={5}
         >
             <Header opened={opened} toggle={toggle} />
-            <Navbar />
+            <Navbar toggle={toggle} />
             <Main content={<Outlet />} />
         </AppShell>
     );

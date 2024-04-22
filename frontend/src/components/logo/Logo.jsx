@@ -1,3 +1,4 @@
+import { Title } from "#mc";
 export default function () {
-    return <h2>ANote</h2>;
+    return <Title order={2}>ANote</Title>;
 }
