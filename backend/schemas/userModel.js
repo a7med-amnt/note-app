@@ -1,3 +1,5 @@
+import mongoose from "mongoose";
+
 export default {
     name: {
         type: String,
@@ -5,13 +7,14 @@ export default {
         minlength: 2,
         maxlength: 20
     },
-    email:{
-      type:String,
-      require:true,
-      unique:true
+    email: {
+        type: String,
+        require: true,
+        unique: true
     },
-    password:{
-      type:String,
-      require:true,
-    }
+    password: {
+        type: String,
+        require: true
+    },
+    notes: [{ type: mongoose.Schema.Types.ObjectId, ref: "Note" }]
 };

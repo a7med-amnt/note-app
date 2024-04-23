@@ -1,8 +1,8 @@
 import express from "express";
-import { getUser } from "#controllers/users.js";
+import { getOwner } from "#controllers/user.js";
 
 const router = express.Router();
 
-router.route("/signup").post(getUser);
+router.route("/").get(getOwner);
 
 export default router;
