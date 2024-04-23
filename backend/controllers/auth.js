@@ -1,97 +1,39 @@
-const eah = require("express-async-handler");
-const {
-    User,
-    validateUserSignup,
-    validateUserSignin
-} = require("../models/modelIndex.js");
-const bcryptjs = require("bcryptjs");
+import eah from "express-async-handler";
+import Users from "#models/user.js";
+import error from "#utils/error.js";
 
 //signup controller
-const signup = eah(async function (rq, rs) {
-    // validate user data
-    const { error } = validateUserSignup(rq.body);
-    // @TODO update status
-    if (error)
-        return rs.status(400).json({ message: error.details[0].message });
+export const signup = eah(async function (rq, rs, nx) {
+    let userData = rq.validData;
 
-    // extructe user data
-    let userData = {
-        name: rq.body.name,
-        username: rq.body.username,
-        password: rq.body.password,
-        email: rq.body.email
-    };
-
-    // check user if he already signup
-    let isUser = null;
-    isUser = await User.findOne({ username: userData.username });
-    if (isUser)
-        //@TODO update status
-        return rs.status(400).json({ message: "username already used" });
-    isUser = await User.findOne({ email: userData.email });
-    //@TODO update status
-    if (isUser) return rs.status(400).json({ message: "email already used" });
-
-    // hash password
-    const hashPassword = bcryptjs.hashSync(
-        userData.password,
-        parseInt(process.env.BCRYPTJS_SLAT)
-    );
+    // check user if he already exsited
+    let user = null;
+    user = await Users.findByEmail(userData.email);
+    if (user) return nx(error("email already used"));
 
     // save user in database
-    const user = User({
-        name: userData.name,
-        username: userData.username,
-        password: hashPassword,
-        email: userData.email
-    });
-    await user.save();
+    const newUsers = new Users(userData);
+    await newUsers.save();
+
     // response to the user
-    //@TODO update status
-    rs.status(200).json({ message: "done" });
+    rs.json({ message: "signup successfully" });
 });
 
 // signin controller
-const signin = eah(async function (rq, rs) {
-    // validate user data
-    const { error } = validateUserSignin(rq.body);
-    // @TODO update status
-    if (error)
-        return rs.status(400).json({ message: error.details[0].message });
-
-    // extructe user data
-    let userData = {
-        usernameemail: rq.body.usernameemail,
-        password: rq.body.password
-    };
+export const signin = eah(async function (rq, rs, nx) {
+    const userData = rq.validData;
 
     // check user if he already signup
     let user = null;
-    user = await User.findOne({ username: userData.usernameemail });
-    if (!user) {
-        user = await User.findOne({ email: userData.usernameemail });
-        if (!user)
-            //@TODO update status
-            return rs.status(400).json({ message: "not found the user" });
-    }
+    user = await Users.findByEmail(userData.email);
+    if (!user) return nx(error("user not found"));
 
     // compare the password
-    let isPasswordTrue = false;
-    isPasswordTrue = bcryptjs.compareSync(userData.password, user.password);
-    if (!isPasswordTrue)
-        //@TODO update status
-        return rs.status(400).json({ message: "incorrect password" });
+    if (!user.comPas(userData.password)) return nx(error("incorrect password"));
 
     // generate web token
-    const userToken = user.generateAuthToken();
+    const token = user.genToken();
 
     // response to the user
-    //@TODO update status
-    rs.status(200).json({ message: "signin success", token: userToken });
+    rs.json({ message: "signin successfully", token });
 });
-
-// export controllers
-module.exports = {
-    signup,
-    signin
-};
