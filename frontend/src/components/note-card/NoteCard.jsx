@@ -1,7 +1,14 @@
 import { Stack, Group, ActionIcon, Text, Flex } from "#mc";
 import { IconTrash, IconEdit, IconPin } from "#ti";
 import Tags from "#components/tags/Tags";
-export default function ({ openEditCard }) {
+import { useDeleteNoteMutation } from "#api/note";
+import checkRes from "#utils/checkRes";
+export default function ({ note, openEditCard }) {
+    let { title, content, isPined, tags, _id } = note;
+    const [deleteNote] = useDeleteNoteMutation();
+    function handleDeleteNote() {
+        checkRes(deleteNote, _id);
+    }
     return (
         <Stack
             bg="gray.2"
@@ -14,7 +21,7 @@ export default function ({ openEditCard }) {
             <Group justify="space-between">
                 <Stack>
                     <Text fw={700} pb={2}>
-                        Note Title
+                        {title}
                     </Text>
                     <Text c="dimmed">2024-4-21</Text>
                 </Stack>
@@ -22,19 +29,19 @@ export default function ({ openEditCard }) {
                     <IconPin />
                 </ActionIcon>
             </Group>
-            <Text py={5}>Note content</Text>
+            <Text py={5}>{content}</Text>
             <Flex
                 direction={{ base: "column", md: "row" }}
                 jsutify={{ base: "flex-start", md: "space-between" }}
             >
                 <Group wrap="wrap">
-                    <Tags />
+                    <Tags tags={tags} />
                 </Group>
                 <Group justify="flex-end">
                     <ActionIcon onClick={openEditCard}>
                         <IconEdit />
                     </ActionIcon>
-                    <ActionIcon>
+                    <ActionIcon onClick={handleDeleteNote}>
                         <IconTrash />
                     </ActionIcon>
                 </Group>

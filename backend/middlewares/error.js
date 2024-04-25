@@ -5,7 +5,6 @@ export default function (er, rq, rs, nt) {
     
     if (!er.statusCode) statusCode = 500;
     else statusCode = er.statusCode;
-
     rs.status(statusCode);
     rs.json({
         message,

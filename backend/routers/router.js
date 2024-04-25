@@ -14,7 +14,7 @@ const router = express.Router();
 router.use(express.json());
 
 //---routes
-router.use("/api", home);
+router.use("/", home);
 router.use("/api/v1/auth", auth);
 router.use("/api/v1/notes", checkTokon, note);
 router.use("/api/v1/users", checkTokon,user);

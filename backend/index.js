@@ -8,6 +8,7 @@ const app = express();
 dotenv.config();
 connectDb();
 
+app.use(cors());
 app.use(router);
 
 let port = process.env.PORT || 4948;

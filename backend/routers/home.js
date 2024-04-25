@@ -1,8 +1,8 @@
 import express from "express";
-import { instructionsApi } from "#controllers/home.js";
+import { instructions } from "#controllers/home.js";
 
 const router = express.Router();
 
-router.route("/").get(instructionsApi);
+router.route("/").get(instructions);
 
 export default router;

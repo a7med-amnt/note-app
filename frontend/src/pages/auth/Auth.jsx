@@ -14,7 +14,7 @@ export default function () {
                     <br />
                     {t("or")}
                     <br />
-                    <Anchor component={Link} to="signin">
+                    <Anchor component={Link} to="signup">
                         {t("signup")}
                     </Anchor>
                 </Text>

@@ -10,6 +10,10 @@ import "#i18n/i18n";
 import { useTranslation } from "#ri18n";
 import { useDirection } from "#mc";
 import "#styles/main.css";
+import { ApiProvider } from "@reduxjs/toolkit/query/react";
+import api from "#api/main";
+import { Notifications } from "#mn";
+import "@mantine/notifications/styles.css";
 
 export default function () {
     const { i18n } = useTranslation();
@@ -31,10 +35,13 @@ export default function () {
     });
 
     return (
-        <DirectionProvider>
-            <MantineProvider theme={theme}>
-                <Router />
-            </MantineProvider>
-        </DirectionProvider>
+        <ApiProvider api={api}>
+            <DirectionProvider>
+                <MantineProvider theme={theme}>
+                    <Notifications position="top-center" limit={1}/>
+                        <Router />
+                </MantineProvider>
+            </DirectionProvider>
+        </ApiProvider>
     );
 }

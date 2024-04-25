@@ -5,6 +5,7 @@ import path from "path";
 // https://vitejs.dev/config/
 export default defineConfig({
     plugins: [react()],
+    envPrefix:"E_",
     resolve: {
         alias: {
             //---react
@@ -26,7 +27,10 @@ export default defineConfig({
             "#layouts": path.resolve(__dirname, "src", "layouts"),
             "#routes": path.resolve(__dirname, "src", "routes"),
             "#components": path.resolve(__dirname, "src", "components"),
-            "#i18n": path.resolve(__dirname, "src", "i18n")
+            "#i18n": path.resolve(__dirname, "src", "i18n"),
+            "#configs": path.resolve(__dirname, "src", "configs"),
+            "#utils": path.resolve(__dirname, "src", "utils"),
+            "#api": path.resolve(__dirname, "src", "api")
         }
     }
 });

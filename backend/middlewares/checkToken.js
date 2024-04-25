@@ -5,6 +5,7 @@ import User from "#models/user.js";
 
 export default eah(async function (rq, rs, nx) {
     const token = rq.headers["authorization"];
+    if (!token) return nx(error("token not provided"));
     try {
         const decodedToken = jwt.verify(token, process.env.JWT_KEY);
         const user = await User.findById(decodedToken._id);
