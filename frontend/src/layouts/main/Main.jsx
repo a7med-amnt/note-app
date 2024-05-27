@@ -10,7 +10,7 @@ export default function () {
     const [opened, { toggle }] = useDisclosure();
     return (
         <AppShell
-            header={{ height: 60 }}
+            header={{ height: 60, padding: 10 }}
             navbar={{
                 width: 300,
                 breakpoint: "sm",

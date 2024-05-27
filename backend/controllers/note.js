@@ -13,7 +13,9 @@ export const addNote = eah(async function (rq, rs, nx) {
 export const editNote = eah(async function (rq, rs, nx) {
     let noteData = rq.validData;
     let noteId = rq.params.noteId;
-    let note = await Note.findById(noteId);
+    let ownerId = rq.user._id;
+
+    let note = await Note.findOne({ _id: noteId, ownerId });
 
     if (!note) return nx(error("note not found", 404));
     await Note.findOneAndUpdate({ _id: noteId }, noteData);
@@ -23,7 +25,8 @@ export const editNote = eah(async function (rq, rs, nx) {
 
 export const deleteNote = eah(async function (rq, rs, nx) {
     let noteId = rq.params.noteId;
-    let note = await Note.findById(noteId);
+    let ownerId = rq.user._id;
+    let note = await Note.findOne({ _id: noteId, ownerId });
 
     if (!note) return nx(error("note not found", 404));
     await Note.deleteOne({ _id: noteId });
@@ -31,8 +34,55 @@ export const deleteNote = eah(async function (rq, rs, nx) {
     rs.json({ message: "deleted successfully" });
 });
 
-export const getAllNotes = eah(async function (rq, rs, nx) {
+export const getNotes = eah(async function (rq, rs, nx) {
     const ownerId = rq.user._id;
-    const notes = await Note.find({ ownerId });
-    rs.json({ message: "get all notes successfully", notes });
+    let qSearch = rq.query?.search || "";
+
+    let notes = await Note.find({
+        ownerId,
+        $or: [
+            {
+                title: {
+                    $regex: qSearch,
+                    $options: "i"
+                }
+            },
+            {
+                content: {
+                    $regex: qSearch,
+                    $options: "i"
+                }
+            },
+            { tags: qSearch }
+        ]
+    }).sort({ pin: -1,createdAt:-1 });
+
+    rs.json({ message: "get notes successfully", notes });
+});
+export const getNote = eah(async function (rq, rs, nx) {
+    const ownerId = rq.user._id;
+    const noteId = rq.params.noteId;
+
+    let note = await Note.findOne({
+        ownerId,
+        _id: noteId
+    });
+
+    if (!note) return nn(error("note not found", 404));
+
+    rs.json({ message: "get note successfully", note });
+});
+
+export const togglePin = eah(async function (rq, rs, nx) {
+    const noteId = rq.params.noteId;
+    const ownerId = rq.user._id;
+    let note = await Note.findOne({
+        ownerId,
+        _id: noteId
+    });
+    if (!note) return nx(error("not found note", 404));
+
+    note.pin = !note.pin;
+    await note.save();
+    rs.json({ message: "pin toggled successfully" });
 });

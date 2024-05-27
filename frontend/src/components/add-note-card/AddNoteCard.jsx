@@ -1,4 +1,12 @@
-import { Modal, Stack, TextInput, Textarea, Button } from "#mc";
+import {
+    Modal,
+    Stack,
+    ActionIcon,
+    Badge,
+    TextInput,
+    Textarea,
+    Button
+} from "#mc";
 import { useTranslation } from "#ri18n";
 import TagsInput from "#components/tags-input/TagsInput";
 import { useAddNoteMutation } from "#api/note";
@@ -17,19 +25,18 @@ export default function ({ opened, close }) {
             tags: []
         },
         validate: {
-            title: v => (v ? null : "Name required"),
-            content: v => (v ? null : "Email required")
+            title: v => (v ? null : "Title required"),
+            content: v => (v ? null : "Content required")
         }
     });
     function handleSubmit() {
-        function cbS(data) {
-            console.log(data);
-        }
         function validData(data) {
-            checkRes(addNote, data, cbS);
+            checkRes(addNote, data);
+        form.reset();
         }
         form.onSubmit(validData)();
     }
+
     return (
         <Modal opened={opened} onClose={close} title={t("addNote")}>
             <Stack>
@@ -43,8 +50,8 @@ export default function ({ opened, close }) {
                     placeholder={t("contentPlaceholder")}
                     {...form.getInputProps("content")}
                 />
-                <TagsInput setValues={form.setValues} />
-                <Button onClick={handleSubmit}>Add</Button>
+                <TagsInput form={form} />
+                <Button my="lg" onClick={handleSubmit}>{t("add")}</Button>
             </Stack>
         </Modal>
     );

@@ -1,9 +1,9 @@
 import eah from "express-async-handler";
 import Note from "#models/note.js";
 import error from "#utils/error.js";
-export const getOwner = eah(async function (rq, rs, nx) {
+export const getUser = eah(async function (rq, rs, nx) {
     const { name, email, _id } = rq.user;
-    const notes = await Note.find({ownerId:_id})
+    const notes = await Note.find({ ownerId: _id })
     const data = {
         name,
         email,

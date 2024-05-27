@@ -17,8 +17,15 @@
         "addNote": "اضافة ملاحظة",
         "editNote": "تعديل ملاحظة",
         "title": "العنوان",
+        "tag": "وسم",
         "titlePlaceholder": "أدخل العنوان هنا",
+        "tagPlaceholder": "أدخل وسم هنا",
         "content": "المحتوى",
-        "contentPlaceholder": "أدخل المحتوى هنا"
+        "contentPlaceholder": "أدخل المحتوى هنا",
+        "confDelT": "هل تريد حذف هذه الملاحظة",
+        "yes": "نعم",
+        "no": "لا",
+        "delete": "حذف",
+        "add": "اضافة"
     }
 }

@@ -2,9 +2,13 @@ import api from "#api/main.js";
 
 export const noteApi = api.injectEndpoints({
     endpoints: b => ({
-        getAllNotes: b.query({
-            query: () => "/notes",
+        getNotes: b.query({
+            query: params => "/notes?" + params,
             providesTags: ["notes"]
+        }),
+        getNote: b.query({
+            query: id => "/notes/" + id,
+            providesTags: ["note"]
         }),
         addNote: b.mutation({
             query: body => ({
@@ -16,10 +20,11 @@ export const noteApi = api.injectEndpoints({
         }),
         editNote: b.mutation({
             query: ({ data, noteId }) => ({
-                url: "/notes/" + notesId,
+                url: "/notes/" + noteId,
                 method: "put",
                 body: data
-            })
+            }),
+            invalidatesTags: ["notes", "note"]
         }),
         deleteNote: b.mutation({
             query: noteId => ({
@@ -30,15 +35,17 @@ export const noteApi = api.injectEndpoints({
         }),
         togglePin: b.mutation({
             query: noteId => ({
-                url: "/notes/" + notesId,
+                url: "/notes/pin/" + noteId,
                 method: "put"
-            })
+            }),
+            invalidatesTags: ["notes", "note"]
         })
     })
 });
 
 export const {
-    useGetAllNotesQuery,
+    useGetNotesQuery,
+    useGetNoteQuery,
     useAddNoteMutation,
     useEditNoteMutation,
     useDeleteNoteMutation,

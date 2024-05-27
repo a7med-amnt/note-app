@@ -1,35 +1,56 @@
-import { Group, Box, ActionIcon, TextInput } from "#mc";
+import { Group, Stack, Badge, ActionIcon, TextInput } from "#mc";
 import { IconPlus } from "#ti";
-import { useState } from "#r";
+import { useRef } from "#r";
+import { IconX } from "#ti";
 import { useTranslation } from "#ri18n";
 import Tags from "#components/tags/Tags";
 
-export default function ({ setValues }) {
-    let [tags, setTags] = useState([]);
-    let [value, setValue] = useState("");
+export default function ({ form }) {
+    let inputRef = useRef();
     const { t } = useTranslation();
+
     function handleClick() {
-        if (!value.trim()) return console.log("no tag");
-        setTags([...tags, value]);
-        setValues({ tags: [...tags, value] });
+        let tag = inputRef.current.value;
+        if (!tag.trim()) return console.log("no tag");
+        form.insertListItem("tags", tag);
+        inputRef.current.value = "";
     }
 
+    let Tags = form.getValues().tags.map((tag, i) => {
+        let DeleteHandler = (
+            <ActionIcon
+                onClick={() => {
+                    form.removeListItem("tags", i);
+                }}
+            >
+                <IconX size={15} />
+            </ActionIcon>
+        );
+        return (
+            <Badge
+                leftSection={DeleteHandler}
+                key={tag + "i"}
+                m="sm"
+                style={{ textTransform: "none" }}
+            >
+                {tag}
+            </Badge>
+        );
+    });
+
     return (
-        <Box>
-            <Group>
-                <Tags tags={tags} />
-            </Group>
-            <Group>
-                <TextInput
-                    placeholder={t("tagPlaceholder")}
-                    label={t("tag")}
-                    value={value}
-                    onChange={e => setValue(e.target.value)}
-                />
-                <ActionIcon onClick={handleClick}>
-                    <IconPlus />
-                </ActionIcon>
-            </Group>
-        </Box>
+        <Stack>
+            <Group>{Tags}</Group>
+            <TextInput
+                placeholder={t("tagPlaceholder")}
+                label={t("tag")}
+                ref={inputRef}
+                rightSection={
+                    <ActionIcon onClick={handleClick}>
+                        <IconPlus />
+                    </ActionIcon>
+                }
+            />
+        </Stack>
     );
 }

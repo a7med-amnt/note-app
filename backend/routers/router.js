@@ -17,7 +17,7 @@ router.use(express.json());
 router.use("/", home);
 router.use("/api/v1/auth", auth);
 router.use("/api/v1/notes", checkTokon, note);
-router.use("/api/v1/users", checkTokon,user);
+router.use("/api/v1/user", checkTokon,user);
 
 //---not found
 router.use("*", notFound);

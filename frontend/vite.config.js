@@ -5,7 +5,7 @@ import path from "path";
 // https://vitejs.dev/config/
 export default defineConfig({
     plugins: [react()],
-    envPrefix:"E_",
+    envPrefix: "E_",
     resolve: {
         alias: {
             //---react
@@ -20,6 +20,9 @@ export default defineConfig({
             "#mn": "@mantine/notifications",
             //---tabler-icon
             "#ti": "@tabler/icons-react",
+            //---redux
+            "#rtk": "@reduxjs/toolkit",
+            "#rr": "react-redux",
             //---folders
             "#pages": path.resolve(__dirname, "src", "pages"),
             "#styles": path.resolve(__dirname, "src", "styles"),
@@ -30,6 +33,8 @@ export default defineConfig({
             "#i18n": path.resolve(__dirname, "src", "i18n"),
             "#configs": path.resolve(__dirname, "src", "configs"),
             "#utils": path.resolve(__dirname, "src", "utils"),
+            "#store": path.resolve(__dirname, "src", "store"),
+            "#slices": path.resolve(__dirname, "src", "store","slices"),
             "#api": path.resolve(__dirname, "src", "api")
         }
     }

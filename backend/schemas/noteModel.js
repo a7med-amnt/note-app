@@ -13,7 +13,7 @@ export default {
         minlength: 2,
         maxlength: 200
     },
-    isPined: {
+    pin: {
         type: Boolean,
         default: false
     },

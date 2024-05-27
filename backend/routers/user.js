@@ -1,8 +1,8 @@
 import express from "express";
-import { getOwner } from "#controllers/user.js";
+import { getUser } from "#controllers/user.js";
 
 const router = express.Router();
 
-router.route("/").get(getOwner);
+router.route("/").get(getUser);
 
 export default router;

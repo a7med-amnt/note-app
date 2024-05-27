@@ -5,16 +5,24 @@ import Home from "#pages/home/Home";
 import AuthPage from "#pages/auth/Auth";
 import Signin from "#pages/signin/Signin";
 import Signup from "#pages/signup/Signup";
+import EditNote from "#pages/edit-note/EditNote";
+import { baseLoader } from "./loaders";
 
 export default function () {
     const router = createBrowserRouter([
         {
             path: "/",
             element: <Main />,
+            loader: baseLoader,
             children: [
                 {
                     index: true,
                     element: <Home />
+                },
+
+                {
+                    path: "edit-note/:noteId",
+                    element: <EditNote />
                 }
             ]
         },

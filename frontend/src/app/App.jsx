@@ -3,16 +3,18 @@ import {
     createTheme,
     ActionIcon,
     MantineProvider,
-    DirectionProvider
+    DirectionProvider,
+    virtualColor,
+    colorsTuple
 } from "#mc";
-import "@mantine/core/styles.css";
-import "#i18n/i18n";
 import { useTranslation } from "#ri18n";
 import { useDirection } from "#mc";
-import "#styles/main.css";
-import { ApiProvider } from "@reduxjs/toolkit/query/react";
-import api from "#api/main";
+import { Provider } from "#rr";
+import store from "#store/store";
 import { Notifications } from "#mn";
+import "@mantine/core/styles.css";
+import "#i18n/i18n";
+import "#styles/main.css";
 import "@mantine/notifications/styles.css";
 
 export default function () {
@@ -22,7 +24,17 @@ export default function () {
     document.documentElement.setAttribute("dir", dir);
     const theme = createTheme({
         fontFamily: "Poppins, sans-serif",
-        primaryColor: "cyan",
+        primaryColor: "primary",
+        colors: {
+            primary: colorsTuple("darkred"),
+            mbg: virtualColor({
+                name: "mbg",
+                dark: "dark.6",
+                light: "gray.1"
+            }),
+            "dark.6": colorsTuple("#2E2E2E"),
+            "gray.1": colorsTuple("#F8F9FA")
+        },
         components: {
             ActionIcon: ActionIcon.extend({
                 defaultProps: {
@@ -35,13 +47,13 @@ export default function () {
     });
 
     return (
-        <ApiProvider api={api}>
+        <Provider store={store}>
             <DirectionProvider>
                 <MantineProvider theme={theme}>
-                    <Notifications position="top-center" limit={1}/>
-                        <Router />
+                    <Notifications position="top-center" limit={1} />
+                    <Router />
                 </MantineProvider>
             </DirectionProvider>
-        </ApiProvider>
+        </Provider>
     );
 }

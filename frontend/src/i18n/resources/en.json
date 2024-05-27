@@ -17,8 +17,15 @@
         "addNote": "Add Note",
         "editNote": "Edit Note",
         "title": "Title",
+        "tag": "Tag",
         "titlePlaceholder": "Enter title here",
+        "tagPlaceholder": "Enter tag here",
         "content": "Content",
-        "contentPlaceholder": "Enter content here"
+        "contentPlaceholder": "Enter content here",
+        "confDelT": "Do you want delete this note",
+        "delete": "Delete",
+        "yes": "Yes",
+        "no": "No",
+        "add": "Add"
     }
 }
