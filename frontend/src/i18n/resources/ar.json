@@ -10,6 +10,7 @@
         "dontHavAccount": "لا تمتلك حساب؟",
         "havAccount": "تمتلك حساب؟",
         "signup": "انشاء حساب",
+        "signout": "تسجيل خروج",
         "or": "أو",
         "nameLabel": "الاسم",
         "namePlaceholder": "أدخل اسمك هنا",
@@ -26,6 +27,7 @@
         "yes": "نعم",
         "no": "لا",
         "delete": "حذف",
-        "add": "اضافة"
+        "add": "اضافة",
+        "confSignoutT": "هل تريد تسجيل الخروج من الحساب"
     }
 }

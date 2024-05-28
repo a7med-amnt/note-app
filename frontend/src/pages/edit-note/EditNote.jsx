@@ -13,13 +13,15 @@ import { useParams } from "#rrd";
 import { useForm } from "#mf";
 import checkRes from "#utils/checkRes";
 import TagsInput from "#components/tags-input/TagsInput";
+import EditNoteSkeleton from "#components/skeletons/EditNote";
 
 export default function () {
     let noteId = useParams().noteId;
     let note = {};
     const { t } = useTranslation();
     const [editNote] = useEditNoteMutation();
-    const { data, isSuccess } = useGetNoteQuery(noteId);
+    const { data, isSuccess, isLoading } = useGetNoteQuery(noteId);
+
     const form = useForm({
         mode: "uncontrolled",
         initialValues: {
@@ -32,6 +34,7 @@ export default function () {
             content: v => (v ? null : "Content required")
         }
     });
+
     if (isSuccess) {
         note = data.note;
         form.initialize({
@@ -40,12 +43,14 @@ export default function () {
             tags: note.tags
         });
     }
+
     function handleEditNote() {
         function validData(data) {
             checkRes(editNote, { data, noteId }, () => {}, console.log);
         }
         form.onSubmit(validData)();
     }
+    if (isLoading) return <EditNoteSkeleton />;
 
     return (
         <Stack m="md">

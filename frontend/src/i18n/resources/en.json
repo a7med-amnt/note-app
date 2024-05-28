@@ -10,6 +10,7 @@
         "dontHavAccount": "Do not have an account?",
         "havAccount": "have an account?",
         "signup": "Sign Up",
+        "signout": "Sign Out",
         "or": "or",
         "nameLabel": "The Name",
         "namePlaceholder": "Enter the name here",
@@ -26,6 +27,7 @@
         "delete": "Delete",
         "yes": "Yes",
         "no": "No",
-        "add": "Add"
+        "add": "Add",
+        "confSignoutT": "Do you want signout of the account"
     }
 }

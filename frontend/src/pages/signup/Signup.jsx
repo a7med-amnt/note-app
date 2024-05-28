@@ -10,7 +10,7 @@ import {
 } from "#mc";
 import { useForm } from "#mf";
 import { notifications } from "#mn";
-import { Link,useNavigate } from "#rrd";
+import { Link, useNavigate } from "#rrd";
 import { useTranslation } from "#ri18n";
 import { useSignupMutation } from "#api/auth";
 import checkRes from "#utils/checkRes";
@@ -67,7 +67,7 @@ export default function () {
                 </Button>
                 <Text size="sm">
                     {t("havAccount")}{" "}
-                    <Anchor component={Link} to="/auth/signin">
+                    <Anchor component={Link} to="/auth/signin" replace={true}>
                         {t("signin")}
                     </Anchor>
                 </Text>

@@ -4,3 +4,8 @@ export function isTokenExist() {
     if (token) bool = true;
     return bool;
 }
+
+export function deleteToken() {
+     localStorage.removeItem("token");
+  
+}

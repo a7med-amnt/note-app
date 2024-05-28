@@ -1,4 +1,4 @@
-import { useState } from "#r";
+import { useNavigation } from "#rrd";
 import { Group } from "#mc";
 import { useDisclosure } from "#mh";
 import NotesCards from "#components/notes-cards/NotesCards";
@@ -7,11 +7,11 @@ import AddNoteCard from "#components/add-note-card/AddNoteCard";
 
 export default function () {
     const [opened, { open, close }] = useDisclosure(false);
+    console.log(window.history);
     return (
         <Group justify="center">
             <NotesCards />
             <AddNoteCard opened={opened} close={close} />
-
             <AddNoteButton open={open} hidden={opened} />
         </Group>
     );

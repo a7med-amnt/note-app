@@ -34,7 +34,8 @@ export default function () {
     function handleSubmit() {
         function cbS(data) {
             localStorage.setItem("token", data.token);
-            nav("/",{replace:true})
+            nav("/", { replace: true });
+            //window.history;
         }
         function validData(data) {
             checkRes(signin, data, cbS);
@@ -61,7 +62,7 @@ export default function () {
                 </Button>
                 <Text size="sm">
                     {t("dontHavAccount")}{" "}
-                    <Anchor component={Link} to="/auth/signup">
+                    <Anchor component={Link} to="/auth/signup" replace={true}>
                         {t("signup")}
                     </Anchor>
                 </Text>
